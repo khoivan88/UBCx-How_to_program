@@ -9,6 +9,11 @@ public class Time {
         this.min = min;
     }
 
+    public String getTime() {
+        String output = String.format("%02d: %02d", hour, min);
+        return output;
+    }
+
     public int getHour() {
         return hour;
     }
