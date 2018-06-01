@@ -1,0 +1,10 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname quiz) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;PROBLEM:
+;
+;Design a function that consumes two images and produces true if the first is larger than the second.
+;
+;Complete your design using DrRacket. When you are done, you must submit something in this box in order to unlock the assessment rubric, but when you are doing your assessment, grade your submission in DrRacket where indentation and formatting will be preserved.
+;
+;Be sure to watch the evaluation video before completing your assessment.
