@@ -1,3 +1,6 @@
 [submodule "part3_data_abstraction/final/SimpleDrawingPlayer-starter"]
 	path = part3_data_abstraction/final/SimpleDrawingPlayer-starter
 	url = https://github.com/khoivan88/UBCx-How_to_program.git
+[submodule "part3_data_abstraction/mod1/intro-to-softconst-lecture-starters"]
+	path = part3_data_abstraction/mod1/intro-to-softconst-lecture-starters
+	url = https://github.com/khoivan88/UBCx-How_to_program.git
