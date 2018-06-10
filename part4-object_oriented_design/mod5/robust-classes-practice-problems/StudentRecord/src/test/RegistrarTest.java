@@ -1,5 +1,9 @@
 package test;
 
+import exceptions.CourseFullException;
+import exceptions.GPATooLowException;
+import exceptions.MissingPrereqException;
+import exceptions.NoCoursesTakenException;
 import model.Course;
 import model.Registrar;
 import model.Transcript;
@@ -43,7 +47,7 @@ public class RegistrarTest {
     }
 
     @Test
-    public void testpromoteAllStudents() {
+    public void testpromoteAllStudents() throws GPATooLowException, NoCoursesTakenException {
         testTct1.addToPastCourses(CPSC110);
         testTct2.addToPastCourses(CPSC121);
 
@@ -59,7 +63,7 @@ public class RegistrarTest {
     }
 
     @Test
-    public void testregisterStudent() {
+    public void testregisterStudent() throws MissingPrereqException, CourseFullException {
         assertFalse(CPSC110.isCourseFull());
         assertEquals(CPSC110.getEnrollment(),22);
         testReg.registerStudent(CPSC110, testTct1);
