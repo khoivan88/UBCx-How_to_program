@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Server {
+public class Server extends FOHEmployee {
 
     private static final double DISH_PRICE = 10.00;
     private static final String PREFIX = "SERVER - ";
@@ -11,12 +11,16 @@ public class Server {
     private List<Order> orders;
     private double cash;
     private int currentOrderNumber;
-    private Dish dish;
 
     public Server(Dish dish) {
+        super(dish);
         this.orders = new ArrayList<>();
         currentOrderNumber = 100;
-        this.dish = dish;
+    }
+
+    @Override
+    public String getPrefix() {
+        return PREFIX;
     }
 
     //getter
@@ -37,16 +41,6 @@ public class Server {
         return o;
     }
 
-    //EFFECTS: prints out a description of the dish on the menu
-    public void describeDish() {
-        System.out.println(dish.getDescription());
-    }
-
-    //EFFECTS: prints out a greeting
-    public void greet() {
-        System.out.println("\"Hello and welcome to Busy's, the home of the trendy turkey club sandwich.\"");
-    }
-
     //MODIFIES: this
     //EFFECTS: takes payment for the guest and removes order from system
     public void takePayment(Order order) {
@@ -56,12 +50,23 @@ public class Server {
         System.out.println("\"Thanks for visiting Busy's Diner!\"");
     }
 
-    //MODIFIES: this, order
-    //EFFECTS: logs order as served and brings to table
-    public void deliverFood(Order order) {
-        order.setIsServed();
-        System.out.print(PREFIX + "Delivered food: ");
-        order.print();
-    }
+    //    //EFFECTS: prints out a description of the dish on the menu
+//    public void describeDish() {
+//        System.out.println(dish.getDescription());
+//    }
+
+//    //EFFECTS: prints out a greeting
+//    public void greet() {
+//        System.out.println("\"Hello and welcome to Busy's, the home of the trendy turkey club sandwich.\"");
+//    }
+
+
+//    //MODIFIES: this, order
+//    //EFFECTS: logs order as served and brings to table
+//    public void deliverFood(Order order) {
+//        order.setIsServed();
+//        System.out.print(PREFIX + "Delivered food: ");
+//        order.print();
+//    }
 
 }

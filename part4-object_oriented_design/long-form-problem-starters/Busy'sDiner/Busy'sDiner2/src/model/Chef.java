@@ -28,12 +28,20 @@ public class Chef {
 
     //EFFECTS: prints out the ingredients being prepared
     private void prepareIngredients() {
-        System.out.println(PREFIX + "Slicing tomatoes... Shredding lettuce...");
+//        System.out.println(PREFIX + "Slicing tomatoes... Shredding lettuce...");
+//        System.out.println(PREFIX + "Mashing avocado! Yum!");
+        System.out.print(PREFIX + "Preparing: ");
+        for (String ingredient: this.order.getIngredients()) {
+            System.out.print(ingredient + ", ");
+        }
+        System.out.println();
     }
 
     //EFFECTS: prints out the recipe being followed
     private void followRecipe() {
-        System.out.println(PREFIX + "Stacking meat... Placing veggies.... ");
+//        System.out.println(PREFIX + "Stacking meat... Placing veggies.... ");
+//        System.out.println(PREFIX + "Pouring sriracha! Spreading avocado! Trendy!");
+        System.out.println(PREFIX + this.order.getRecipe());
     }
 
     //EFFECTS: prints out a message about cooking food

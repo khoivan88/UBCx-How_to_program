@@ -1,33 +1,38 @@
 package ui;
 
-import model.Employee;
+import model.Chef;
+import model.Server;
 import model.Order;
 
 public class Diner {
 
     public static void main(String[] args) {
-        Employee employee = new Employee();
+        Server server = new Server();
+        Chef chef = new Chef();
 
         for (int i=0; i < 2 ; i++) {
             System.out.println("Table " + (i + 1) + ":\n");
 
-            employee.greet();
-            employee.describeDish();
-            Order o = employee.takeOrder();
+            server.greet();
+            server.describeDish();
+            Order o = server.takeOrder();
+
+            chef.makeDish(o);
 
             System.out.println();
 
-            doOrderRoutine(employee, o);
+            doOrderRoutine(server, o);
             System.out.println();
         }
 
         System.out.println();
-        employee.doDishes();
+//        server.doDishes();
+        chef.doDishes();
     }
 
-    private static void doOrderRoutine(Employee e, Order o) {
-        if (o.needsToBePrepared())
-            e.makeDish(o);
+    private static void doOrderRoutine(Server e, Order o) {
+//        if (o.needsToBePrepared())
+//            e.makeDish(o);
         System.out.println();
         if (o.isReadyToBeServed())
             e.deliverFood(o);
