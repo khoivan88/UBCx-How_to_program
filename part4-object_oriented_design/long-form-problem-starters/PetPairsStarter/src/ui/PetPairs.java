@@ -8,9 +8,19 @@ import model.pets.Dog;
 import model.pets.Parrot;
 import model.pets.Pet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PetPairs {
 
+    private List<Pet> animals;
+    private List<Human> people;
+
     public PetPairs() {
+
+        animals = new ArrayList<>();
+        people = new ArrayList<>();
+
         Cat cat = new Cat("calico", false, true, 55.00);
         Dog dog = new Dog("black");
         Parrot parrot = new Parrot("green and red", true, false, 20.00);
@@ -46,6 +56,8 @@ public class PetPairs {
 
         int result = sally.numPetsOfSpecies("dog");
         System.out.println("Sally has " + result + " dog(s)");
+
+        store.displayAllPetsWithAttributes(true, false, 50.00);
     }
 
 }
