@@ -26,6 +26,10 @@ public class Box {
         contents = null;
     }
 
+//    public void setContents(StandardSizeBook contents) {
+//        this.contents = contents;
+//    }
+
     public void setContents(Book contents) {
         this.contents = contents;
     }

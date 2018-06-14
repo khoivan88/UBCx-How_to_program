@@ -12,7 +12,7 @@ public class GangesOrderShipper {
 
     public static void main(String[] args) {
         // Some books that need to be shipped
-        Book b1 = new Book("The Unbearable Lightness of Being John Malkovich", 19.95);
+        Book b1 = new StandardSizeBook("The Unbearable Lightness of Being John Malkovich", 19.95);
         Book b2 = new OversizedBook("The Princess Brideshead Revisited", 29.15);
 
         // Add them to a list so it's easy to iterate through them
@@ -25,13 +25,14 @@ public class GangesOrderShipper {
             System.out.printf("Packaging and shipping %s.\n", thisTitle);
 
             // Package the book in a medium sized box
-            Box box = b.packageBook(new Box("medium"));
+            String boxSize = b.getMinBoxSize();
+            Box box = b.packageBook(new Box(boxSize));
             double shipping = box.calculateShipping();
             System.out.printf("The book %s is being shipped for %.2f in a %s-sized box.\n",
-                    thisTitle, shipping, "medium");
+                    thisTitle, shipping, boxSize);
 
             // model.Book is successfully boxed up, so calculate the shipping cost and make sure it's not too expensive
-            if (shipping > MAX_EXPECTED_SHIPPING) {
+            if (b instanceof StandardSizeBook && shipping > MAX_EXPECTED_SHIPPING) {
                 System.out.printf("WARNING: The shipping for %s is too expensive!\n", thisTitle);
             } else {
                 System.out.printf("SUCCESS: %s shipped successfully!\n", thisTitle);
