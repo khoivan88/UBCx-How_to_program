@@ -1,5 +1,6 @@
 package model;
 
+import model.observer_pattern.Observer;
 import model.observer_pattern.Subject;
 import model.random.BingoNumber;
 
@@ -23,7 +24,9 @@ public class Game extends Subject {
 
     @Override
     public void notifyObservers() {
-        getCurrentCall();
+        for (Observer player: getObservers()) {
+            player.update(currentCall);
+        }
     }
 
     //getters
@@ -35,19 +38,31 @@ public class Game extends Subject {
         return gameOver;
     }
 
+//    public List<PlayerCard> getCards() {
+//        List<PlayerCard> playerCards = new ArrayList<>();
+//        for (PlayerCard o : getObservers()) { //NOTE: refactor this line ONLY.
+//            if (o.getClass().getSimpleName().equals("PlayerCard"))
+//                playerCards.add((PlayerCard) o);
+//        }
+//        return playerCards;
+//    }
+
     public List<PlayerCard> getCards() {
-        List<PlayerCard> playerCards = new ArrayList<>();
-        for (PlayerCard o : getObservers()) { //NOTE: refactor this line ONLY.
-            if (o.getClass().getSimpleName().equals("PlayerCard"))
-                playerCards.add((PlayerCard) o);
+        List<PlayerCard> players = new ArrayList<>();
+        for (Observer player: getObservers()) {
+            if (player instanceof PlayerCard) {
+                players.add((PlayerCard) player);
+            }
         }
-        return playerCards;
+        return players;
     }
 
     //TODO: refactor this method
     //EFFECTS: generates the next bingo call and notifies observers
     public void callNext() {
         currentCall = new BingoNumber();
+        notifyObservers();
+        refreshGameOver();
     }
 
 //    //TODO: refactor this method
@@ -57,16 +72,15 @@ public class Game extends Subject {
 //        cards.add(pc);
 //    }
 
-    //TODO: NEW
     //MODIFIES: this
     //EFFECTS: adds observer to list of observers
-    public void addPlayerCard(PlayerCard pc) {
+    public void addPlayerCard(Observer pc) {
         addObserver(pc);
     }
 
     //EFFECTS: sets game over to true if one of the players has bingo
     public void refreshGameOver(){
-        for (PlayerCard pc : getObservers()) {
+        for (Observer pc : getObservers()) {
             PlayerCard p = (PlayerCard) pc;
             if (p.hasBingo()) {
                 gameOver = true;

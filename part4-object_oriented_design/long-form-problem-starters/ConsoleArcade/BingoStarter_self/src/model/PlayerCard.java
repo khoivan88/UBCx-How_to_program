@@ -1,9 +1,15 @@
 package model;
 
+import model.observer_pattern.Subject;
 import model.random.BingoNumber;
 import model.random.NumberSquare;
+import model.observer_pattern.Observer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 import static model.Game.CARD_SIZE;
 
@@ -26,10 +32,12 @@ public class PlayerCard implements Observer {
         }
     }
 
+    @Override
     // TODO: refactor this method
     //MODIFIES: this
     //EFFECTS: checks whether bingo call matches a square in this card, stamps if so, and updates hasBingo
-    public void checkCallMatch(Object o){
+    public void update(Object o) {
+//    public void checkCallMatch(Object o){
         BingoNumber bc = (BingoNumber) o;
         int i = numberSquaresMatch(bc);
         for (int j=0; j < i; j++) {
@@ -193,8 +201,9 @@ public class PlayerCard implements Observer {
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
+//    @Override
+//    public void update(Object game) {
+//        checkCallMatch(game.getCurrentCall());
+//    }
 
-    }
 }
