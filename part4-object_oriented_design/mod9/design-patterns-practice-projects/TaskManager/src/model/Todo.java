@@ -38,9 +38,7 @@ public class Todo extends Doable {
 
     @Override
     public void complete() {
-        if (getStatus()) {
-            this.complete = true;
-        }
+        this.complete = getStatus();
     }
 
     @Override
