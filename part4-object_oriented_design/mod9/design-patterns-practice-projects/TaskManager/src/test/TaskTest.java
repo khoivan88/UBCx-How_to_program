@@ -34,10 +34,17 @@ public class TaskTest {
 
     @Test
     public void testcomplete() {
+//        assertFalse(t.getStatus());
         assertFalse(t.getStatus());
         t.complete();
+//        assertTrue(t.getStatus());
         assertTrue(t.getStatus());
     }
+
+//    @Test
+//    public void testDisplay() {
+//        ass("\tGet a coffee on 08/16/2017 @JJ Bean", t.display("\t"));
+//    }
 
 
 }

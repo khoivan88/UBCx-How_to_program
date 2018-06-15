@@ -1,23 +1,25 @@
 package model;
 
-public class Task {
+public class Task extends Doable {
 
+//    private boolean complete;
     private String description;
     private String date;
     private String location;
-    private boolean status;
+
 
     public Task(String description, String date, String location) {
+//        complete = false;
+        super();
         this.description = description;
         this.date = date;
         this.location = location;
-        status = false;
     }
 
     // getters
     public String getDate() { return date; }
     public String getLocation() { return location; }
-    public boolean getStatus() { return status; }
+//    public boolean getStatus() { return complete; }
 
     // setters
     public void setDate(String date) { this.date = date; }
@@ -28,8 +30,8 @@ public class Task {
     }
 
     public void complete() {
-        if (!status) {
-            status = true;
+        if (!complete) {
+            complete = true;
         }
     }
 
