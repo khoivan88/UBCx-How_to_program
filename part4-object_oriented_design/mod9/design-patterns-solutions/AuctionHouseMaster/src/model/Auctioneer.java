@@ -10,6 +10,11 @@ public class Auctioneer extends Subject {
         currentBid = 0.0;
     }
 
+    public Auctioneer(String name, double currentBid) {
+        this.name = name;
+        this.currentBid = currentBid;
+    }
+
     // getters
     public String getName() { return name; }
     public double getCurrentBid() { return currentBid; }
