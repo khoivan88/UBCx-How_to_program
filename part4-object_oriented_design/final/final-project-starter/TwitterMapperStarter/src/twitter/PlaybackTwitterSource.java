@@ -20,6 +20,7 @@ public class PlaybackTwitterSource extends TwitterSource {
 
     public PlaybackTwitterSource(double speedup) {
         this.speedup = speedup;
+//        addObserver(new TestObserver());
     }
 
     private void startThread() {
