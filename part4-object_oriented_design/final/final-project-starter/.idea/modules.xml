@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TwitterMapperStarter/TwitterMapperStarter.iml" filepath="$PROJECT_DIR$/TwitterMapperStarter/TwitterMapperStarter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/final-project-starter.iml" filepath="$PROJECT_DIR$/.idea/final-project-starter.iml" />
     </modules>
   </component>
 </project>

@@ -3,9 +3,6 @@ package twitter;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  * Encapsulates the connection to Twitter
  *
@@ -19,7 +16,7 @@ public class LiveTwitterSource extends TwitterSource {
 
     public LiveTwitterSource() {
         initializeTwitterStream();
-//        addObserver(new TestObserver());
+//        addObserver(new Query());
     }
 
     protected void sync() {

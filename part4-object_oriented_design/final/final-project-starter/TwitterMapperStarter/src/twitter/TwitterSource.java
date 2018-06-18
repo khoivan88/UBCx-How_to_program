@@ -1,7 +1,6 @@
 package twitter;
 
 import twitter4j.Status;
-import twitter4j.api.TweetsResources;
 import util.ImageCache;
 
 import java.util.*;
@@ -15,7 +14,8 @@ public abstract class TwitterSource extends Observable {
     // Called each time a new set of filter terms has been established
     abstract protected void sync();
 
-    protected void log(Status status) {
+//    protected void log(Object status) {
+    public void log(Object status) {
         if (doLogging) {
             System.out.println(status.getUser().getName() + ": " + status.getText());
         }
@@ -37,6 +37,7 @@ public abstract class TwitterSource extends Observable {
     //       it can determine whether the tweet should be displayed
     protected void handleTweet(Status s) {
         setChanged();
-        notifyObservers();
+        //todo: add parameter for notifyObserver()
+        notifyObservers(s);
     }
 }

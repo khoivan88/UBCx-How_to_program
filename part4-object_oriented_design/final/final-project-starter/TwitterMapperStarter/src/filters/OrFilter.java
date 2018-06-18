@@ -3,6 +3,8 @@ package filters;
 import twitter4j.Status;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A filter that represents the logical not of its child filter
@@ -28,7 +30,11 @@ public class OrFilter implements Filter {
 
     @Override
     public List<String> terms() {
-        return child1.terms();
+//        return child1.terms();
+
+        //ref: https://stackoverflow.com/questions/189559/how-do-i-join-two-lists-in-java
+        return Stream.concat(child1.terms().stream(), child2.terms().stream()).collect(Collectors.toList());
+
     }
 
     public String toString() {
