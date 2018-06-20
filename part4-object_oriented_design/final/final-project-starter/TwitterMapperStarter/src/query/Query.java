@@ -78,10 +78,10 @@ public class Query implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (getFilter().matches((Status) arg)) {
-            TwitterSource t = (TwitterSource) o;
+//            TwitterSource t = (TwitterSource) o;
 //            setVisible(true);
 //            ((Status) arg).getGeoLocation();
-            t.log((Status) arg);
+//            t.log((Status) arg);
         }
     }
 }

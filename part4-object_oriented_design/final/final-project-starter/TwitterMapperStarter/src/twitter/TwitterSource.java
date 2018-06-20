@@ -15,12 +15,11 @@ public abstract class TwitterSource extends Observable {
     abstract protected void sync();
 
 //    protected void log(Object status) {
-    public void log(Object status) {
-        if (doLogging) {
-            System.out.println(status.getUser().getName() + ": " + status.getText());
-        }
-        ImageCache.getInstance().loadImage(status.getUser().getProfileImageURL());
-    }
+//        if (doLogging) {
+//            System.out.println(status.getUser().getName() + ": " + status.getText());
+//        }
+//        ImageCache.getInstance().loadImage(status.getUser().getProfileImageURL());
+//    }
 
     public void setFilterTerms(Collection<String> newterms) {
         terms.clear();
