@@ -5,25 +5,22 @@ import org.openstreetmap.gui.jmapviewer.Layer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerCircle;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class PrettierMarker extends MapMarkerCircle {
-    public static final double defaultMarkerSize = 5.0;
-//    public static final Color defaultColor = Color.red;
-//    public static final Point defaultPoint = new Point();
+    public static final double defaultMarkerSize = 15.0;
+    public static final int defaultProfileSize = (int) (defaultMarkerSize*1.5);
 
-    public PrettierMarker(Layer layer, Coordinate coord, Color color) {
+    private BufferedImage image;
+
+
+    public PrettierMarker(Layer layer, Coordinate coord, Color color, BufferedImage image) {
         super(layer, null, coord, defaultMarkerSize, STYLE.FIXED, getDefaultStyle());
+        this.image = image;
         setColor(Color.BLACK);
         setBackColor(color);
     }
 
-    public PrettierMarker(Layer layer, Coordinate coord, Color color, Graphics graphic) {
-        super(layer, null, coord, defaultMarkerSize, STYLE.FIXED, getDefaultStyle());
-        setColor(Color.BLACK);
-        setBackColor(color);
-        paint(graphic, new Point((int) coord.getLat(), (int) coord.getLon()), (int) defaultMarkerSize);
-
-    }
 
     @Override
     public void paint(Graphics g, Point position, int radius) {
@@ -39,10 +36,15 @@ public class PrettierMarker extends MapMarkerCircle {
 
         g.setColor(this.getColor());
         g.drawOval(position.x - radius, position.y - radius, size, size);
+
+        //To add profile picture onto the marker:
+        g.drawImage(this.image, position.x - defaultProfileSize/2, position.y - defaultProfileSize/2, defaultProfileSize, defaultProfileSize, null);
+//        g.drawImage(this.image, position.x - radius, position.y - radius, size, size, null);
+
+
         if (this.getLayer() == null || this.getLayer().isVisibleTexts()) {
             this.paintText(g, position);
         }
 
     }
-
 }

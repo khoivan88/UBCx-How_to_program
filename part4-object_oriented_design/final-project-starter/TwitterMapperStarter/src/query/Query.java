@@ -3,20 +3,13 @@ package query;
 import filters_original.Filter;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.Layer;
-import twitter.TwitterSource;
 import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterResponse;
-import ui.MapMarkerSimple;
 import ui.PrettierMarker;
 import util.Util;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -89,25 +82,13 @@ public class Query implements Observer {
         Status s = (Status) arg;
         if (getFilter().matches(s)) {
 //            MapMarkerSimple marker = new MapMarkerSimple(getLayer(), Util.statusCoordinate(s));
-            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor());
+//            PrettierMarker marker = new PrettierMarker(getLayer(), util.Util.statusCoordinate(s), getColor());
 
-//            Image img = ImageIO.read(new File(s.getUser().getMiniProfileImageURL()));
-//            ImageIO.read(s.getUser().getMiniProfileImageURL());
-//            BufferedImage buffer = convertToBufferedImage(img.getImage());
-//            BufferedImage buffer = ImageIO.read((URL) s.getUser().getMiniProfileImageURL());
-//            Graphics g = buffer.getGraphics();
+//            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor(),
+//                                                        Util.imageFromURL(s.getUser().getProfileImageURL()).getGraphics());
+            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor(),
+                                        Util.imageFromURL(s.getUser().getProfileImageURL()));
 
-//            ImageIcon icon = new ImageIcon(s.getUser().getMiniProfileImageURL());
-//            BufferedImage bi = new BufferedImage(
-//                    icon.getIconWidth(),
-//                    icon.getIconHeight(),
-//                    BufferedImage.TYPE_INT_RGB);
-//            Graphics g = bi.createGraphics();
-//            // paint the Icon to the BufferedImage.
-//            icon.paintIcon(null, g, 0,0);
-////            g.dispose();
-
-//            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor(), g);
 
             map.addMapMarker(marker);
         }
