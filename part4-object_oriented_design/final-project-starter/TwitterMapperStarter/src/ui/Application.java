@@ -120,13 +120,32 @@ public class Application extends JFrame {
 
         // Set up a motion listener to create a tooltip showing the tweets at the pointer position
         map().addMouseMotionListener(new MouseAdapter() {
+//            @Override
+//            public void mouseMoved(MouseEvent e) {
+//                Point p = e.getPoint();
+//                ICoordinate pos = map().getPosition(p);
+//                // TODO: Use the following method to set the text that appears at the mouse cursor
+////                map().setToolTipText("tooltip testing 1");
+//                map().setToolTipText("This is a tooltip");
+//
+//            }
+
             @Override
             public void mouseMoved(MouseEvent e) {
                 Point p = e.getPoint();
                 ICoordinate pos = map().getPosition(p);
                 // TODO: Use the following method to set the text that appears at the mouse cursor
-                map().setToolTipText("This is a tooltip");
+//                map().setToolTipText("Hover mouse to see more info");
+//                Status s = (Status) (source.readObject());
+//                map().setToolTipText(twitterSource.toString());
+                List<MapMarker> markersWithMouseOver = getMarkersCovering(pos, 1);
+//                map().setToolTipText(Util.imageFromURL("https://prod-edxapp.edx-cdn.org/static/edx.org/images/logo-footer.fde85fe42f6b.png").getGraphics());
+                for (MapMarker marker: markersWithMouseOver) {
+                    String s = marker.getName();
+                    map().setToolTipText(s);
+                }
             }
+
         });
     }
 
