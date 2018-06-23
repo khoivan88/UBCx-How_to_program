@@ -7,7 +7,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 import org.openstreetmap.gui.jmapviewer.tilesources.BingAerialTileSource;
 import query.Query;
-import twitter.PlaybackTwitterSource;
+import twitter.LiveTwitterSource;
 import twitter.TwitterSource;
 import util.SphericalGeometry;
 
@@ -35,14 +35,14 @@ public class Application extends JFrame {
 
     private void initialize() {
         // To use the live twitter stream, use the following line
-//         twitterSource = new LiveTwitterSource();
+         twitterSource = new LiveTwitterSource();
 
         // To use the recorded twitter stream, use the following line
         // The number passed to the constructor is a speedup value:
         //  1.0 - play back at the recorded speed
         //  2.0 - play back twice as fast
 //        twitterSource = new PlaybackTwitterSource(60.0);
-        twitterSource = new PlaybackTwitterSource(3.0);
+//        twitterSource = new PlaybackTwitterSource(3.0);
 
         queries = new ArrayList<>();
     }
@@ -125,7 +125,6 @@ public class Application extends JFrame {
 //                Point p = e.getPoint();
 //                ICoordinate pos = map().getPosition(p);
 //                // TODO: Use the following method to set the text that appears at the mouse cursor
-////                map().setToolTipText("tooltip testing 1");
 //                map().setToolTipText("This is a tooltip");
 //
 //            }
@@ -135,14 +134,20 @@ public class Application extends JFrame {
                 Point p = e.getPoint();
                 ICoordinate pos = map().getPosition(p);
                 // TODO: Use the following method to set the text that appears at the mouse cursor
-//                map().setToolTipText("Hover mouse to see more info");
-//                Status s = (Status) (source.readObject());
-//                map().setToolTipText(twitterSource.toString());
-                List<MapMarker> markersWithMouseOver = getMarkersCovering(pos, 1);
-//                map().setToolTipText(Util.imageFromURL("https://prod-edxapp.edx-cdn.org/static/edx.org/images/logo-footer.fde85fe42f6b.png").getGraphics());
+                List<MapMarker> markersWithMouseOver = getMarkersCovering(pos, pixelWidth(p));
+
+                // get the width of the popup window (JToolTip)
+                int popupSize = map().getWidth();
+
                 for (MapMarker marker: markersWithMouseOver) {
-                    String s = marker.getName();
-                    map().setToolTipText(s);
+                    PrettierMarker prettierMarker = (PrettierMarker) marker;
+                    String tweet = prettierMarker.getTweet();
+                    String profilePic = prettierMarker.getStatus().getUser().getProfileImageURL();
+
+                    //For multi-line: https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
+                    //For adding Image into JToolTip: http://www.java2s.com/Tutorial/Java/0240__Swing/ShowinganImageinaToolTip.htm
+                    map().setToolTipText("<html><p width=\"" + popupSize/2 + "\"><img src=" +
+                                        profilePic + "><br>" + tweet+ "</p></html>");
                 }
             }
 

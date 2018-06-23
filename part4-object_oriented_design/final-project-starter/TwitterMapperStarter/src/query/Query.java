@@ -86,8 +86,9 @@ public class Query implements Observer {
 
 //            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor(),
 //                                                        Util.imageFromURL(s.getUser().getProfileImageURL()).getGraphics());
-            PrettierMarker marker = new PrettierMarker(getLayer(), Util.statusCoordinate(s), getColor(),
-                                        Util.imageFromURL(s.getUser().getProfileImageURL()));
+            PrettierMarker marker = new PrettierMarker(s, getLayer(), Util.statusCoordinate(s), getColor());
+//            PrettierMarker marker = new PrettierMarker(s, getLayer(), Util.statusCoordinate(s), getColor(),
+//                    Util.imageFromURL(s.getUser().getProfileImageURL()));
 
 
             map.addMapMarker(marker);

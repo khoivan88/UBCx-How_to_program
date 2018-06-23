@@ -3,6 +3,8 @@ package ui;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.Layer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerCircle;
+import twitter4j.Status;
+import util.Util;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,11 +14,13 @@ public class PrettierMarker extends MapMarkerCircle {
     public static final int defaultProfileSize = (int) (defaultMarkerSize*1.5);
 
     private BufferedImage image;
+    private Status status;
 
 
-    public PrettierMarker(Layer layer, Coordinate coord, Color color, BufferedImage image) {
+    public PrettierMarker(Status s, Layer layer, Coordinate coord, Color color) {
         super(layer, null, coord, defaultMarkerSize, STYLE.FIXED, getDefaultStyle());
-        this.image = image;
+        this.status = s;
+        this.image = Util.imageFromURL(status.getUser().getProfileImageURL());
         setColor(Color.BLACK);
         setBackColor(color);
     }
@@ -46,5 +50,13 @@ public class PrettierMarker extends MapMarkerCircle {
             this.paintText(g, position);
         }
 
+    }
+
+    public String getTweet() {
+        return this.status.getText();
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }
